@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import userService from "../../services/UserService";
+import userService from "../../services/userService";
 import accountService from "../../services/accountService";
 import styled from "@emotion/styled";
 import { ToastContainer, toast } from 'react-toastify';

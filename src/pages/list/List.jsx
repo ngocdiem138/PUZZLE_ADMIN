@@ -4,7 +4,7 @@ import Navbar from "../../components/navbar/Navbar"
 import Datatable from "../../components/datatable/Datatable"
 import bookService from "../../services/bookService"
 import { useQuery } from "@tanstack/react-query"
-import userService from "../../services/UserService"
+import userService from "../../services/userService"
 
 const List = () => {
 
