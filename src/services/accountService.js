@@ -12,7 +12,7 @@ const accountService = {
       },
     });
   },
-  
+
   getAllAccount() {
     if (!token) return null;
     return api.get("api/admin/get-all-account", {
@@ -24,7 +24,7 @@ const accountService = {
 
   getAccountById(id) {
     if (!token) return null;
-    return api.get("/api/admin/get-account-by-id/"+id, {
+    return api.get("/api/admin/get-account-by-id/" + id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -33,29 +33,29 @@ const accountService = {
 
   createAccount(data) {
     if (!token) return null;
-    return api.post("/api/admin/add-account", data,{
+    return api.post("/api/admin/add-account", data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
   },
 
-  updateAccount(data) {
+  updateAccount(id, data) {
     if (!token) return null;
-    return api.put("/api/admin/add-account", data, {
+    return api.put("/api/admin/update-account-by-id/" + id, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
   },
 
-  deleteAccount(id){
+  deleteAccount(id) {
     if (!token) return null;
-    return api.delete("/admin/delete-account/"+id, {
+    return api.delete("/admin/delete-account/" + id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    });    
+    });
 
   }
 };

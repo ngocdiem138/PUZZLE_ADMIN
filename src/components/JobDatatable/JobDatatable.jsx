@@ -40,7 +40,7 @@ export default function CompanyDatatable() {
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "name", headerName: "Name", width: 140 },
-    { field: "description", headerName: "Description", width: 200 },
+    // { field: "description", headerName: "Description", width: 200 },
     { field: "website", headerName: "website", width: 150 },
     { field: "createdEmployerId", headerName: "createdEmployerId", width: 150 },
     { field: "jobPostIds", headerName: "jobPostIds", width: 150 },

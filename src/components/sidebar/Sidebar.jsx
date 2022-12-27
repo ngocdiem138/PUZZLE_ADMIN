@@ -18,8 +18,8 @@ const Sidebar = () => {
   const navigate = useNavigate()
 
   const onLogout = async() => {
+    localStorage.removeItem('login')
     navigate('/login')
-    localStorage.clear()
     const res = await authService.logout()
     console.log('logout', res);
   }

@@ -6,13 +6,13 @@ export const userInputs = [
       type: "text",
       placeholder: "john_doe",
     },
-    // {
-    //   id: 2,
-    //   value: "fullname",
-    //   label: "Name and surname",
-    //   type: "text",
-    //   placeholder: "John Doe",
-    // },
+    {
+      id: 2,
+      value: "fullname",
+      label: "Name and surname",
+      type: "text",
+      placeholder: "John Doe",
+    },
     {
       id: 3,
       value: "email",
@@ -35,16 +35,9 @@ export const userInputs = [
     },
     {
       id: 6,
-      label: "Role",
-      value: "roleCodes",
-      placeholder: "candidate",
-    },
-    {
-      id: 7,
       label: "Active",
       value:"active",
       type: "checkbox",
-      placeholder: "true",
     },
   ];
   

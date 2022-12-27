@@ -1,11 +1,11 @@
-import "./datatableTemplate.scss";
+import "./ExtraInfoDatatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const DatatableTemplate = ({dataRows, columns, deleteMutation, actionColumn=[]}) => {
+const ExtraInfoDatatable = ({dataRows, columns, deleteMutation, actionColumn=[]}) => {
   const [data, setData] = useState(dataRows);
 
   console.log(columns);
@@ -49,4 +49,4 @@ const DatatableTemplate = ({dataRows, columns, deleteMutation, actionColumn=[]})
   );
 };
 
-export default DatatableTemplate;
+export default ExtraInfoDatatable;

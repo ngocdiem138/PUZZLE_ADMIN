@@ -14,16 +14,17 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const state = useContext(DarkModeContext);
   const navigate = useNavigate()
   const {data: profile, error, isError, isLoading } = useQuery({queryKey: ['profile'], queryFn: authService.getProfile}) 
   
   useEffect(()=>{
-    if(error)
+    if(isError)
     {
       navigate('/login')
       localStorage.clear()
     }
-  }, [error])
+  }, [isError])
 
   return (
     <div className="navbar">
@@ -36,6 +37,7 @@ const Navbar = () => {
           <div className="item">
             <DarkModeOutlinedIcon
               className="icon"
+              style={state.darkMode?{"color":"yellow"}:{"color":"black"}}
               onClick={() => dispatch({ type: "TOGGLE" })}
             />
           </div>

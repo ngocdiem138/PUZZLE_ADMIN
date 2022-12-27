@@ -50,7 +50,7 @@ export default function CompanyDatatable() {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Company List
+        List All Company
         <Link to="/users/new" className="link">
           Add New
         </Link>

@@ -60,9 +60,6 @@ const DatatableTemplate = () => {
     <div className="datatable">
       <div className="datatableTitle">
       List All Job
-        <Link to='new' className="link">
-          Add New
-        </Link>
       </div>
       {isLoading ? 
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>

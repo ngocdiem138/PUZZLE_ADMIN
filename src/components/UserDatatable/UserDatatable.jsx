@@ -47,7 +47,7 @@ export default function UserDatatale({dataRows}) {
       renderCell: (params) => {
         return (
           <div className="cellWithImg">
-            <img className="cellImg" src={params.row.avatarUrl || '/images/avatar.svg'} alt="avatar" />
+            <img className="cellImg" src={params.row.avatar || '/images/avatar.svg'} alt="avatar" />
           </div>
         );
       },
@@ -63,7 +63,7 @@ export default function UserDatatale({dataRows}) {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        User List
+        List All User
         <Link to="/users/new" className="link">
           Add New
         </Link>

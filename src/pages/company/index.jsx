@@ -1,7 +1,7 @@
 import "./list.scss"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { companyColumns } from "../../datatablesource"
-import DatatableTemplate from "../../components/datatableTemplate/DatatableTemplate"
+import CompanyDatatable from "../../components/CompanyDatatable/CompanyDatatable"
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { companyActionColumn } from "../../columnAction"
@@ -22,7 +22,7 @@ const Companies = () => {
      </Box>
       :
       <div className="listContainer">
-            <DatatableTemplate dataRows={companies?.data?.data} columns={companyColumns} deleteMutation={deleteSkillMutation}
+            <CompanyDatatable dataRows={companies?.data?.data} columns={companyColumns} deleteMutation={deleteSkillMutation}
                                 actionColumn={companyActionColumn}/>
       </div>}
     </>
