@@ -5,11 +5,21 @@ import { skillColumn } from "../../datatablesource"
 import DatatableTemplate from "../../components/datatableTemplate/DatatableTemplate"
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
-import { skillActionColumn } from "../../columnAction"
+import { skillActionColumn } from "../../columnAction";
+import { useEffect } from "react"
+
 
 const Skills = () => {
 
   const {data: skills, error, isError, isLoading } = useQuery({queryKey: ['skills'], queryFn: skillService.getAllSkill}) 
+  useEffect(()=>{
+    if(isError)
+    {
+      navigate('/login')
+      window.alert("Session has expired")
+      localStorage.clear()
+    }
+  }, [isError])
   const deleteSkillMutation = useMutation({mutationFn: (id)=> skillService.deleteSkill(id), mutationKey: 'delete-skill'})
   return (
     <>

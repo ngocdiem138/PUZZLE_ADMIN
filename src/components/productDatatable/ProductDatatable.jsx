@@ -3,12 +3,20 @@ import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import bookService from "../../services/bookService";
+import { useEffect } from "react";
 
 
 const ProductDataTable = () => {
-  const {data: books, error, isError, isLoading } = useQuery({queryKey: ['products'], queryFn: bookService.getBook}) 
+  const { data: books, error, isError, isLoading } = useQuery({ queryKey: ['products'], queryFn: bookService.getBook })
   const data = books?.data?.data
-  
+  useEffect(() => {
+    if (isError) {
+      navigate('/login')
+      window.alert("Session has expired")
+      localStorage.clear()
+    }
+  }, [isError])
+
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
@@ -39,7 +47,7 @@ const ProductDataTable = () => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-      List All Company
+        List All Company
         <Link to="/users/new" className="link">
           Add New
         </Link>

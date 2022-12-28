@@ -35,7 +35,7 @@ const CompanyDetail = () => {
           placeholder: "www.example.com",
         }
       ];
-      const title = "Add new company"
+      const title = "Edit company"
   const [value, setValue] = useState({})
   const [notification, setNotification] = useState({content: "", type:""})
   
@@ -99,7 +99,7 @@ const CompanyDetail = () => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} onChange={(event)=> onChange(event, input.value)}/>
+                  <input type={input.type} placeholder={input.placeholder} onChange={(event)=> onChange(event, input.value)} dangerouslySetInnerHTML={{ __html:input.value}}/>
                 </div>
               ))}
               <div className="formInput">

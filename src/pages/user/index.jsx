@@ -7,6 +7,14 @@ const UserList = () => {
   // const [data, setData] = useState([]);
   const {data, error, isError, isLoading } = useQuery({queryKey: ['users'], queryFn: accountService.getAllAccount})
 
+  useEffect(()=>{
+    if(isError)
+    {
+      navigate('/login')
+      window.alert("Session has expired")
+      localStorage.clear()
+    }
+  }, [isError])
   // useEffect(() => {
   //   accountService.getAllAccount().then((res) => setData(res));
   // }, []);

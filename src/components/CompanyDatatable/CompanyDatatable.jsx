@@ -2,6 +2,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import companyService from "../../services/companyService";
 import './CompanyDatatable.scss'
 
@@ -9,8 +10,14 @@ export default function CompanyDatatable() {
 
   const {data: users, error, isError, isLoading } = useQuery({queryKey: ['company'], queryFn: companyService.getAllCompany}) 
   const data = users?.data?.data
-  console.log(data)
-  
+  // console.log(html)
+  useEffect(()=>{
+    if(isError)
+    {
+      navigate('/login')
+      localStorage.clear()
+    }
+  }, [isError])
   
 
   const actionColumn = [
@@ -21,7 +28,7 @@ export default function CompanyDatatable() {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={"/company/"+params.row.id} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div
@@ -39,8 +46,8 @@ export default function CompanyDatatable() {
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
     { field: "name", headerName: "Name", width: 190 },
-    { field: "description", headerName: "Description", width: 200 },
-    { field: "website", headerName: "website", width: 150 },
+    // { field: "description", headerName: "Description", width: 500, dangerouslySetInnerHTML:{_html: ""} },
+    { field: "website", headerName: "website", width: 650 },
     { field: "jobPostIds", headerName: "jobPostIds", width: 150 },
     { field: "active", headerName: "active", width: 150 },
     
@@ -51,13 +58,14 @@ export default function CompanyDatatable() {
     <div className="datatable">
       <div className="datatableTitle">
         List All Company
-        <Link to="/users/new" className="link">
+        <Link to="/company/new" className="link">
           Add New
         </Link>
       </div>
-      <div style={{ height: 600, width: '100%' }}>
+      <div style={{ height: 600, width: '100%' }} >
         {isLoading ? <div>Đang tải</div> : 
         <DataGrid
+        _html={false}
         rows={data}
         columns={columns.concat(actionColumn)}
         pageSize={10}

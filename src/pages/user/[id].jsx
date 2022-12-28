@@ -20,7 +20,14 @@ const UserDetail = () => {
 
   const { data: user, error, isError, isLoading } = useQuery({ queryKey: [`user-${id}`], queryFn: () => accountService.getAccountById(id) })
   const data = user?.data?.data
-
+  useEffect(()=>{
+    if(isError)
+    {
+      navigate('/login')
+      window.alert("Session has expired")
+      localStorage.clear()
+    }
+  }, [isError])
   const [notification, setNotification] = useState({ content: "", type: "" });
   // console.log(data)
 

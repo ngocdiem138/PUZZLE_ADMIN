@@ -9,9 +9,18 @@ import jobService from "../../services/jobService"
 import {v4 as uuidv4} from 'uuid'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
 
 const DatatableTemplate = () => {
   const {data, error, isError, isLoading, refetch } = useQuery({queryKey: ['jobs'], queryFn: jobService.getAllJob }) 
+  useEffect(()=>{
+    if(isError)
+    {
+      navigate('/login')
+      window.alert("Session has expired")
+      localStorage.clear()
+    }
+  }, [isError])
   const dataRow = data?.data?.data
   console.log(data?.data)
   const activeJobMutation =  useMutation({mutationFn: (id) => jobService.activeJob(id, true), mutationKey: `active-job-${uuidv4()}`,

@@ -22,6 +22,7 @@ const Navbar = () => {
     if(isError)
     {
       navigate('/login')
+      window.alert("Session has expired")
       localStorage.clear()
     }
   }, [isError])

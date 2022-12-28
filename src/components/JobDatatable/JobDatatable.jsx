@@ -1,6 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import accountService from "../../services/accountService";
 import companyService from "../../services/companyService";
@@ -11,7 +12,13 @@ export default function CompanyDatatable() {
   const {data: users, error, isError, isLoading } = useQuery({queryKey: ['jobs'], queryFn: companyService.getAllCompany}) 
   const data = users?.data?.data
   console.log(data)
-  
+  useEffect(()=>{
+    if(isError)
+    {
+      navigate('/login')
+      localStorage.clear()
+    }
+  }, [isError])
   
 
   const actionColumn = [
