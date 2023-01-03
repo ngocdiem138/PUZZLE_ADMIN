@@ -16,7 +16,7 @@ const Widget = ({ type, amount }) => {
       data = {
         title: "USERS",
         isMoney: false,
-        link: "See all users",
+        link: <a href='/users'>See all users</a>,
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -32,7 +32,7 @@ const Widget = ({ type, amount }) => {
       data = {
         title: "JOBS",
         isMoney: false,
-        link: "View all job",
+        link: <a href='/jobs'>View all job</a>,
         icon: (
           <ShoppingCartOutlinedIcon
             className="icon"
@@ -46,7 +46,7 @@ const Widget = ({ type, amount }) => {
       break;
     case "application":
       data = {
-        link: "View all aplicant",
+        link: <a href='/users'>View all aplicant</a>,
         title: "APPLICATION",
         isMoney: true,
         // link: "View net earnings",
@@ -62,7 +62,7 @@ const Widget = ({ type, amount }) => {
       data = {
         title: "COMPANY",
         isMoney: true,
-        link: "See details",
+        link: <a href='/company'>See details</a>,
         icon: (
           <AccountBalanceWalletOutlinedIcon
             className="icon"
