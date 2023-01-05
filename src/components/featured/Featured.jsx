@@ -25,8 +25,8 @@ const Featured = () => {
   const [totalSaleCurrentMonth, setTotalSaleCurrentMonth] = useState(0);
   useEffect(() => {
     statisticService.getTotalRevenueByTime({
-      "startTime": timeNow,
-      "endTime": dateNow
+      "startTime": dateNow,
+      "endTime": timeNow
     }).then((res) => {
       setTotalSaleToday(res.data.data);
     });
