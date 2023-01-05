@@ -42,9 +42,11 @@ const Chart = ({ aspect, title }) => {
         .getDataJoinLastWeek()
         .then((res) => {
           const dataTmp = res?.data?.data
-          setMyData(dataTmp.map(dt => ({name: dt.name, Total: dt.total})))
+          if (dataTmp) {
+            setMyData(dataTmp.map(dt => ({ name: dt.name, Total: dt.total })))
+          }
         });
-      }
+    }
   }, []);
 
 
