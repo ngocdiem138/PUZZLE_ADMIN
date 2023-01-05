@@ -37,7 +37,7 @@ const companyService = {
     createCompany(data){
         if(!token)
             return null
-        return api.post('/api/admin/add-company', data,
+        return api.post('/api/admin/create-info-company', data,
         {
         headers: {
             'Authorization': `Bearer ${token}`
@@ -45,10 +45,10 @@ const companyService = {
     },
 
 
-    updateCompany(data){
+    updateCompany(id, data){
         if(!token)
             return null
-        return api.put('/api/admin/update-info-company', data,
+        return api.put('/api/admin/update-info-company/' + id, data,
         {
         headers: {
             'Authorization': `Bearer ${token}`

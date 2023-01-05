@@ -5,6 +5,17 @@ const token = localStorage.getItem('login')
 
 const statisticService = {
 
+    getTotalRevenueByTime(time){
+        if (!token)
+            return null
+        return api.post('/api/admin/get-total-revenue-by-time-frame', time,
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+    },
+
     getAllTransactions() {
         if (!token)
             return null

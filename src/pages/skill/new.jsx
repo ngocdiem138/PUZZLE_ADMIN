@@ -19,7 +19,7 @@ const NewSkill = () => {
           placeholder: "Python, Java",
         }
       ];
-      const title = "Add new skill"
+      const title = "Add new extra info"
   const [value, setValue] = useState({})
   const [notification, setNotification] = useState({content: "", type:""})
   

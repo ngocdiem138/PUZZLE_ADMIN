@@ -23,7 +23,7 @@ const UserList = () => {
     accountService.getAllAccount().then((res) => {
       if (res.data.errCode == "403") {
         setNotification({ content: <>Session expire. Click <a href='/login'>here</a> to login again</>, type: "error" });
-        toast.error(<>Session expire. Click <a href='/login' onClick={onLogout}>here</a> to login again</>, {
+        toast.error(<a href='/login' onClick={onLogout}>Session expire. Click here to login again</a>, {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,

@@ -11,50 +11,69 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 
 const UpdateSkill = () => {
-    const {id} = useParams()
-    const [data, setData] = useState()
-
-    useEffect(()=>{
-      skillService.getOneSkill(id).then(res => setData(res.data.data))
-    })
-
-
-    const inputs = [
-        {
-          id: 1,
-          label: "Name",
-          value: "name",
-          type: "text",
-          placeholder: "Python, Java",
-        }
-      ];
-      const title = "Add new skill"
+  const { id } = useParams()
+  const [data, setData] = useState()
   const [value, setValue] = useState({})
-  const [notification, setNotification] = useState({content: "", type:""})
-  
+  const onLogout = async () => {
+    localStorage.removeItem('login')
+    navigate('/login')
+    const res = await authService.logout()
+    console.log('logout', res);
+  }
+
+  useEffect(() => {
+    skillService.getOneSkill(id).then(res => {
+      if (res.data.errCode == "403") {
+        toast.error(<a href='/login' onClick={onLogout}>Session expire. Click here to login again</a>, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else { setData(res.data.data); setValue(res.data.data) }
+    })
+  }, [])
+
+
+  const inputs = [
+    {
+      id: 1,
+      label: "Name",
+      value: "name",
+      type: "text",
+      placeholder: "Python, Java",
+    }
+  ];
+  const title = "Edit extra info"
+
+  const [notification, setNotification] = useState({ content: "", type: "" })
+
   const Message = styled.div`
   color: ${props => (props.success ? 'green' : 'red')};
 `
 
   const onChange = (event, type) => {
-    let valueTmp = {...value}
-    if(type === 'active')
+    let valueTmp = { ...value }
+    if (type === 'active')
       valueTmp[type] = event.target.checked
     else
       valueTmp[type] = event.target.value
-    setValue({...valueTmp})
+    setValue({ ...valueTmp })
     console.log(valueTmp)
   }
 
-  const onSend = async() => {
+  const onSend = async () => {
     setValue(value)
     console.log(value);
-    const data = await skillService.createNewSkill(value)
+    const data = await skillService.updateExtraInfo(value)
     console.log(data);
-    if(data.data.message === 'Save successfully')
-    {
-      setNotification({content:"Create new skill", type:"success" })
-      toast.success("Create new skill", {
+    if (data.data.status === 200 && (data.data.errorCode == null || data.data.errorCode == "200")) {
+      setNotification({ content: "Save successfully", type: "success" })
+      toast.success("Save successfully", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -63,11 +82,10 @@ const UpdateSkill = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
     }
-    else
-    {
-      setNotification({content:"Error", type:"error" })
+    else {
+      setNotification({ content: "Error", type: "error" })
       toast.error("Error", {
         position: "top-right",
         autoClose: 5000,
@@ -77,9 +95,9 @@ const UpdateSkill = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+      });
     }
-    
+
 
   }
   return (
@@ -94,43 +112,43 @@ const UpdateSkill = () => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input value={data ? data[input.value] : ""} type={input.type} placeholder={input.placeholder} onChange={(event)=> onChange(event, input.value)}/>
+                  <input value={value ? value[input.value] : ""} type={input.type} placeholder={input.placeholder} onChange={(event) => onChange(event, input.value)} />
                 </div>
               ))}
-              <div className="formInput" style={{marginLeft:"-120px"}}>
+              <div className="formInput" style={{ marginLeft: "-120px" }}>
                 <label>Type </label>
-                <select style={{width:"fit-content"}}  type="checkbox" onChange={(event)=>onChange(event, 'type')}>
+                <select style={{ width: "fit-content" }} type="checkbox" onChange={(event) => onChange(event, 'type')}>
                   <option value='SERVICE'>Service</option>
                   <option value='SKILL'>Skill</option>
                   <option value='POSITION'>Position</option>
                 </select>
               </div>
-              <div className="formInput" style={{marginLeft:"-80px"}}>
+              <div className="formInput" style={{ marginLeft: "-80px" }}>
                 <label>Active: </label>
-                <input checked={data ? data['active'] : false} style={{width:"fit-content"}}  type="checkbox" onChange={(event)=>onChange(event, 'active')}/>
+                <input checked={value.active} style={{ width: "fit-content" }} type="checkbox" onChange={(event) => onChange(event, 'active')} />
               </div>
 
               <button type="button" onClick={onSend}>Update</button>
             </form>
           </div>
-            {notification?.type === "success" ?
-              <Message success>{notification.content}</Message>
-              :
-              <Message error>{notification.content}</Message>}
-              <ToastContainer
-                  position="top-right"
-                  autoClose={5000}
-                  hideProgressBar={false}
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                  />
-              {/* Same as */}
-              <ToastContainer />
+          {notification?.type === "success" ?
+            <Message success>{notification.content}</Message>
+            :
+            <Message error>{notification.content}</Message>}
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          {/* Same as */}
+          <ToastContainer />
         </div>
       </div>
     </div>

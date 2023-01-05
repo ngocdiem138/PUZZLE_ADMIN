@@ -58,8 +58,8 @@ const CompanyDetail = () => {
     console.log(data);
     if(data.data.message === 'Save successfully')
     {
-      setNotification({content:"Create new skill", type:"success" })
-      toast.success("Create new skill", {
+      setNotification({content:"Create new company", type:"success" })
+      toast.success("Create new company", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

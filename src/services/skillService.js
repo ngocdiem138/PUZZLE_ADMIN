@@ -35,6 +35,16 @@ const skillService = {
         }})
     },
 
+    updateExtraInfo(data){
+        if(!token)
+            return null
+        return api.put('api/admin/update-extra-info', data,
+        {
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }})
+    },
+
     deleteSkill(id){
         if(!token)
             return null

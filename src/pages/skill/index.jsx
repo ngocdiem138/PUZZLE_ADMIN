@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query"
 import skillService from "../../services/skillService"
 import { skillColumn } from "../../datatablesource"
 import DatatableTemplate from "../../components/datatableTemplate/DatatableTemplate"
+import ExtraInfoDatatable from "../../components/ExtraInfoDatatable/ExtraInfoDatatable"
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { skillActionColumn } from "../../columnAction";
@@ -31,7 +32,7 @@ const Skills = () => {
      </Box>
       :
       <div className="listContainer">
-            <DatatableTemplate dataRows={skills?.data?.data} columns={skillColumn} deleteMutation={deleteSkillMutation}
+            <ExtraInfoDatatable dataRows={skills?.data?.data} columns={skillColumn} deleteMutation={deleteSkillMutation}
                                 actionColumn={skillActionColumn}/>
       </div>}
     </>

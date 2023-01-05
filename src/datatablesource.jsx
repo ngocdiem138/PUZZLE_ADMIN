@@ -191,7 +191,7 @@ export const jobColumn = [
   {
     field: "employmentType",
     headerName: "type",
-    width: 100,
+    width: 150,
   },
 
   {
@@ -201,15 +201,9 @@ export const jobColumn = [
   },
 
   {
-    field: "description",
-    headerName: "Description",
-    width: 100,
-  },
-
-  {
     field: "city",
     headerName: "City",
-    width: 100,
+    width: 150,
   },
   
   {
