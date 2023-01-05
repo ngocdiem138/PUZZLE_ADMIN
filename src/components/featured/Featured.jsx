@@ -5,7 +5,7 @@ import "react-circular-progressbar/dist/styles.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutlined";
 import statisticService from "../../services/statisticService";
-import * as moment from 'moment'
+import moment from 'moment'
 import { useState } from "react";
 import { useEffect } from "react";
 
