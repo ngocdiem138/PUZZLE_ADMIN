@@ -14,7 +14,7 @@ const Featured = () => {
   const timeNow = moment(new Date()).format('YYYY-MM-DD HH:mm:ss')
   const dateNow = moment(new Date()).format('YYYY-MM-DD 00:00:00')
   const lastWeek = moment(new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7)).format('YYYY-MM-DD 00:00:00')
-  const firstDayCurrentMonth = moment(new Date(date.getFullYear(), date.getMonth() - 1, 1)).format('YYYY-MM-DD 00:00:00');
+  const firstDayCurrentMonth = moment(new Date(date.getFullYear(), date.getMonth(), 1)).format('YYYY-MM-DD 00:00:00');
   const firstDayPreviousMonth = moment(new Date(date.getFullYear(), date.getMonth() - 1, 1)).format('YYYY-MM-DD 00:00:00');
   const lastDayPreviousMonth = moment(new Date(date.getFullYear(), date.getMonth(), 0)).format('YYYY-MM-DD 23:59:59');
 
